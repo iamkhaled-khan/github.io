@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE HTML><!DOCTYPE HTML>
 <!--
   Dimension by HTML5 UP
   html5up.net | @ajlkn
@@ -199,37 +199,46 @@
         </article>
 
         <!-- Contact -->
-<article id="contact">
-  <h2 class="major">Contact</h2>
+        <article id="contact">
+          <h2 class="major">Contact</h2>
 
-  <form method="POST" action="https://formspree.io/f/mbdaenrz">
-    <div class="fields">
+          <form method="POST" action="https://formspree.io/f/mbdaenrz">
+            <div class="fields">
 
-      <div class="field half">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" required />
-      </div>
+              <div class="field half">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required />
+              </div>
 
-      <div class="field half">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" required />
-      </div>
+              <div class="field half">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required />
+              </div>
 
-      <div class="field">
-        <label for="message">Message</label>
-        <textarea name="message" id="message" rows="4" required></textarea>
-      </div>
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" rows="4" required></textarea>
+              </div>
 
-    </div>
+            </div>
 
-    <!-- Email subject -->
-    <input type="hidden" name="_subject" value="New message from Khaled's Website" />
+            <!-- Email subject -->
+            <input type="hidden" name="_subject" value="New message from Khaled's Website" />
 
-    <ul class="actions">
-      <li><input type="submit" value="Send Message" class="primary" /></li>
-      <li><input type="reset" value="Reset" /></li>
-    </ul>
-  </form>
+            <ul class="actions">
+              <li><input type="submit" value="Send Message" class="primary" /></li>
+              <li><input type="reset" value="Reset" /></li>
+            </ul>
+          </form>
+
+          <!-- Success Popup -->
+          <div id="successPopup" class="popup-overlay" aria-hidden="true">
+            <div class="popup-card" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+              <h3 id="popupTitle">Message sent ✅</h3>
+              <p>Thanks for reaching out! I’ll get back to you soon.</p>
+              <button type="button" class="button primary" id="popupCloseBtn">OK</button>
+            </div>
+          </div>
 
           <ul class="icons">
             <li>
@@ -283,8 +292,63 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
 
+    <!-- Contact form AJAX submit + animated popup -->
+    <script>
+      (function () {
+        const form = document.querySelector('#contact form');
+        const popup = document.getElementById('successPopup');
+        const closeBtn = document.getElementById('popupCloseBtn');
+
+        if (!form || !popup || !closeBtn) return;
+
+        const showPopup = () => {
+          popup.classList.add('is-visible');
+          popup.setAttribute('aria-hidden', 'false');
+          closeBtn.focus();
+        };
+
+        const hidePopup = () => {
+          popup.classList.remove('is-visible');
+          popup.setAttribute('aria-hidden', 'true');
+        };
+
+        // Close popup on button click or clicking outside the card
+        closeBtn.addEventListener('click', hidePopup);
+        popup.addEventListener('click', (e) => {
+          if (e.target === popup) hidePopup();
+        });
+
+        // Close popup on ESC
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') hidePopup();
+        });
+
+        // AJAX submit to Formspree
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const action = form.getAttribute('action');
+          const formData = new FormData(form);
+
+          try {
+            const res = await fetch(action, {
+              method: 'POST',
+              body: formData,
+              headers: { 'Accept': 'application/json' }
+            });
+
+            if (res.ok) {
+              form.reset();
+              showPopup();
+            } else {
+              alert('Sorry — something went wrong. Please try again.');
+            }
+          } catch (err) {
+            alert('Network error. Please check your internet and try again.');
+          }
+        });
+      })();
+    </script>
+
   </body>
-
 </html>
-
-
