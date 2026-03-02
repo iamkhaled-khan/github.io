@@ -1140,9 +1140,12 @@ input, select, textarea {
 			-ms-transition-delay: 0.75s;
 			transition-delay: 0.75s;
 			background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)), url("../../images/overlay.png");
-			background-size: auto, 256px 256px;
-			background-position: center, center;
-			background-repeat: no-repeat, repeat;
+			background-size: auto,
+ 256px 256px;
+			background-position: center,
+ center;
+			background-repeat: no-repeat,
+ repeat;
 			z-index: 2;
 		}
 
@@ -1656,3 +1659,41 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+/* ===== Contact form success popup ===== */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms ease;
+  z-index: 9999;
+}
+
+.popup-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup-card {
+  width: min(520px, calc(100% - 2.5rem));
+  background: rgba(27, 31, 34, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.25rem;
+
+  transform: translateY(12px) scale(0.98);
+  opacity: 0;
+  transition: transform 250ms ease, opacity 250ms ease;
+}
+
+.popup-overlay.is-visible .popup-card {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
