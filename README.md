@@ -14,6 +14,6 @@ Steps:
 That’s it, your website will be live at: yourusername.github.io
 Happy to help anyone who wants to build theirs!
 
-My Portfolio Link: https://lnkd.in/gNuX6PYz
+My Portfolio Link: https://iamkhaled-khan.github.io/
 
 Please visit my portfolio and let me know your feedback on this. 
