@@ -2,6 +2,7 @@
 For anyone interested in building their own personal portfolio, here’s a quick step-by-step guide to creating your own. 
 
 Steps: 
+
 1️⃣ Download a free HTML template (I used one from HTML5 UP).
 2️⃣ Edit the content using a code editor (like VS Code).
 3️⃣ Create a GitHub account.
@@ -14,4 +15,5 @@ That’s it, your website will be live at: yourusername.github.io
 Happy to help anyone who wants to build theirs!
 
 My Portfolio Link: https://lnkd.in/gNuX6PYz
+
 Please visit my portfolio and let me know your feedback on this. 
